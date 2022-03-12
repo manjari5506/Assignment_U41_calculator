@@ -1,0 +1,105 @@
+ > use assignment
+switched to db assignment
+> db.user.insert({"first_name":"sim","last_name":"coma","email":"sim@aim.com","gender":""female","ip_address":"manf","age":43})
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:87
+> db.user.insert({"first_name":"sim","last_name":"coma","email":"sim@aim.com","gender":"female","ip_address":"manf","age":43})
+WriteResult({ "nInserted" : 1 })
+> db.users.find({})
+{ "_id" : ObjectId("622cdceaf077a6ebe9c9f0b4"), "first_name" : "john", "last_name" : "cena", "email" : "john@john.com", "gender" : "male", "ip_address" : "ncjh", "age" : 24 }
+> db.users.insert({"first_name":"sim","last_name":"coma","email":"sim@aim.com","gender":"female","ip_address":"manf","age":43})
+WriteResult({ "nInserted" : 1 })
+> db.users.find({})
+{ "_id" : ObjectId("622cdceaf077a6ebe9c9f0b4"), "first_name" : "john", "last_name" : "cena", "email" : "john@john.com", "gender" : "male", "ip_address" : "ncjh", "age" : 24 }
+{ "_id" : ObjectId("622cdefad12da5cae908caad"), "first_name" : "sim", "last_name" : "coma", "email" : "sim@aim.com", "gender" : "female", "ip_address" : "manf", "age" : 43 }
+> db.users.insert({"first_name":"mile","last_name":"sing","email":"mile@aim.com","gender":"male","ip_address":"mdhj","age":23})
+WriteResult({ "nInserted" : 1 })
+> db.users.insertMany({"first_name":"lisa","last_name":"paul","email":"lisa@aim.com","gender":"female","ip_address":"nfjr","age":27},{"first_name":"jack","last_name":"sign","email":"jack@in.com","gender":"male","ip_address":"gfjr","age":42})
+uncaught exception: TypeError: documents.map is not a function :
+DBCollection.prototype.insertMany@src/mongo/shell/crud_api.js:307:17
+@(shell):1:1
+> db.users.insertMany([{"first_name":"lisa","last_name":"paul","email":"lisa@aim.com","gender":"female","ip_address":"nfjr","age":27},{"first_name":"jack","last_name":"sign","email":"jack@in.com","gender":"male","ip_address":"gfjr","age":42}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("622ce0c4d12da5cae908caaf"),
+                ObjectId("622ce0c4d12da5cae908cab0")
+        ]
+}
+> db.users.find({})
+{ "_id" : ObjectId("622cdceaf077a6ebe9c9f0b4"), "first_name" : "john", "last_name" : "cena", "email" : "john@john.com", "gender" : "male", "ip_address" : "ncjh", "age" : 24 }
+{ "_id" : ObjectId("622cdefad12da5cae908caad"), "first_name" : "sim", "last_name" : "coma", "email" : "sim@aim.com", "gender" : "female", "ip_address" : "manf", "age" : 43 }
+{ "_id" : ObjectId("622cdf37d12da5cae908caae"), "first_name" : "mile", "last_name" : "sing", "email" : "mile@aim.com", "gender" : "male", "ip_address" : "mdhj", "age" : 23 }
+{ "_id" : ObjectId("622ce0c4d12da5cae908caaf"), "first_name" : "lisa", "last_name" : "paul", "email" : "lisa@aim.com", "gender" : "female", "ip_address" : "nfjr", "age" : 27 }
+{ "_id" : ObjectId("622ce0c4d12da5cae908cab0"), "first_name" : "jack", "last_name" : "sign", "email" : "jack@in.com", "gender" : "male", "ip_address" : "gfjr", "age" : 42 }
+> db.users.insertMany([{"first_name":"sema","last_name":"perk","email":"sema@aim.com","gender":"female","ip_address":"fjud","age":47},{"first_name":"mill","last_name":"fun","email":"mill@in.com","gender":"male","ip_address":"djkr","age":41}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("622ce151d12da5cae908cab1"),
+                ObjectId("622ce151d12da5cae908cab2")
+        ]
+}
+> db.users.insertMany([{"first_name":"jill","last_name":"dark","email":"jill@aim.com","gender":"male","ip_address":"gjid","age":37},{"first_name":"jim","last_name":"stak","email":"jim@in.com","gender":"male","ip_address":"jijl","age":21}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("622ce1bcd12da5cae908cab3"),
+                ObjectId("622ce1bcd12da5cae908cab4")
+        ]
+}
+> db.users.insert({"first_name":"shaun","last_name":"sill","email":"shaun@aim.com","gender":"male","ip_address":"jgif","age":37})
+WriteResult({ "nInserted" : 1 })
+> db.users.find({})
+{ "_id" : ObjectId("622cdceaf077a6ebe9c9f0b4"), "first_name" : "john", "last_name" : "cena", "email" : "john@john.com", "gender" : "male", "ip_address" : "ncjh", "age" : 24 }
+{ "_id" : ObjectId("622cdefad12da5cae908caad"), "first_name" : "sim", "last_name" : "coma", "email" : "sim@aim.com", "gender" : "female", "ip_address" : "manf", "age" : 43 }
+{ "_id" : ObjectId("622cdf37d12da5cae908caae"), "first_name" : "mile", "last_name" : "sing", "email" : "mile@aim.com", "gender" : "male", "ip_address" : "mdhj", "age" : 23 }
+{ "_id" : ObjectId("622ce0c4d12da5cae908caaf"), "first_name" : "lisa", "last_name" : "paul", "email" : "lisa@aim.com", "gender" : "female", "ip_address" : "nfjr", "age" : 27 }
+{ "_id" : ObjectId("622ce0c4d12da5cae908cab0"), "first_name" : "jack", "last_name" : "sign", "email" : "jack@in.com", "gender" : "male", "ip_address" : "gfjr", "age" : 42 }
+{ "_id" : ObjectId("622ce151d12da5cae908cab1"), "first_name" : "sema", "last_name" : "perk", "email" : "sema@aim.com", "gender" : "female", "ip_address" : "fjud", "age" : 47 }
+{ "_id" : ObjectId("622ce151d12da5cae908cab2"), "first_name" : "mill", "last_name" : "fun", "email" : "mill@in.com", "gender" : "male", "ip_address" : "djkr", "age" : 41 }
+{ "_id" : ObjectId("622ce1bcd12da5cae908cab3"), "first_name" : "jill", "last_name" : "dark", "email" : "jill@aim.com", "gender" : "male", "ip_address" : "gjid", "age" : 37 }
+{ "_id" : ObjectId("622ce1bcd12da5cae908cab4"), "first_name" : "jim", "last_name" : "stak", "email" : "jim@in.com", "gender" : "male", "ip_address" : "jijl", "age" : 21 }
+{ "_id" : ObjectId("622ce1fbd12da5cae908cab5"), "first_name" : "shaun", "last_name" : "sill", "email" : "shaun@aim.com", "gender" : "male", "ip_address" : "jgif", "age" : 37 }
+> db.users.find({"age":37})
+{ "_id" : ObjectId("622ce1bcd12da5cae908cab3"), "first_name" : "jill", "last_name" : "dark", "email" : "jill@aim.com", "gender" : "male", "ip_address" : "gjid", "age" : 37 }
+{ "_id" : ObjectId("622ce1fbd12da5cae908cab5"), "first_name" : "shaun", "last_name" : "sill", "email" : "shaun@aim.com", "gender" : "male", "ip_address" : "jgif", "age" : 37 }
+> db.users.findOne({"age":37})
+{
+        "_id" : ObjectId("622ce1bcd12da5cae908cab3"),
+        "first_name" : "jill",
+        "last_name" : "dark",
+        "email" : "jill@aim.com",
+        "gender" : "male",
+        "ip_address" : "gjid",
+        "age" : 37
+}
+> db.users.update({"age":23},{$set:{"age":24}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.users.updateMany({"age":37},{$set:{"age":38}})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
+> db.users.remove({"first_name":"jim"})
+WriteResult({ "nRemoved" : 1 })
+> db.users.find({})
+{ "_id" : ObjectId("622cdceaf077a6ebe9c9f0b4"), "first_name" : "john", "last_name" : "cena", "email" : "john@john.com", "gender" : "male", "ip_address" : "ncjh", "age" : 24 }
+{ "_id" : ObjectId("622cdefad12da5cae908caad"), "first_name" : "sim", "last_name" : "coma", "email" : "sim@aim.com", "gender" : "female", "ip_address" : "manf", "age" : 43 }
+{ "_id" : ObjectId("622cdf37d12da5cae908caae"), "first_name" : "mile", "last_name" : "sing", "email" : "mile@aim.com", "gender" : "male", "ip_address" : "mdhj", "age" : 24 }
+{ "_id" : ObjectId("622ce0c4d12da5cae908caaf"), "first_name" : "lisa", "last_name" : "paul", "email" : "lisa@aim.com", "gender" : "female", "ip_address" : "nfjr", "age" : 27 }
+{ "_id" : ObjectId("622ce0c4d12da5cae908cab0"), "first_name" : "jack", "last_name" : "sign", "email" : "jack@in.com", "gender" : "male", "ip_address" : "gfjr", "age" : 42 }
+{ "_id" : ObjectId("622ce151d12da5cae908cab1"), "first_name" : "sema", "last_name" : "perk", "email" : "sema@aim.com", "gender" : "female", "ip_address" : "fjud", "age" : 47 }
+{ "_id" : ObjectId("622ce151d12da5cae908cab2"), "first_name" : "mill", "last_name" : "fun", "email" : "mill@in.com", "gender" : "male", "ip_address" : "djkr", "age" : 41 }
+{ "_id" : ObjectId("622ce1bcd12da5cae908cab3"), "first_name" : "jill", "last_name" : "dark", "email" : "jill@aim.com", "gender" : "male", "ip_address" : "gjid", "age" : 38 }
+{ "_id" : ObjectId("622ce1fbd12da5cae908cab5"), "first_name" : "shaun", "last_name" : "sill", "email" : "shaun@aim.com", "gender" : "male", "ip_address" : "jgif", "age" : 38 }
+> db.users.removeOne({"age":38})
+uncaught exception: TypeError: db.users.removeOne is not a function :
+@(shell):1:1
+> db.users.removeMany({"age":38})
+uncaught exception: TypeError: db.users.removeMany is not a function :
+@(shell):1:1
+> db.users.remove({"age":38})
+WriteResult({ "nRemoved" : 2 })
+> db.users.remove({"age":42})
+WriteResult({ "nRemoved" : 1 })
+> db.dropDatabase()
+{ "ok" : 1 }
+> db.users.find({})
