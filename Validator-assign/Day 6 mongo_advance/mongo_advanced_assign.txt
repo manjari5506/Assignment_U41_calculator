@@ -1,0 +1,527 @@
+--
+> show dbs
+admin        0.000GB
+config       0.000GB
+local        0.000GB
+validations  0.000GB
+web15        0.000GB
+> use web15
+switched to db web15
+> db.user.find({})
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf92"), "movie_genre" : "Drama", "movie_name" : "River, The (Joki)", "production_year" : 2004, "budget" : 10086 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf93"), "movie_genre" : "Comedy|Romance", "movie_name" : "Two Weeks Notice", "production_year" : 2010, "budget" : 16753 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf94"), "movie_genre" : "Comedy|Western", "movie_name" : "Catlow", "production_year" : 2014, "budget" : 14646 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf95"), "movie_genre" : "Comedy", "movie_name" : "21 and Over", "production_year" : 2005, "budget" : 14347 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf96"), "movie_genre" : "Adventure", "movie_name" : "Treasure of the Four Crowns", "production_year" : 2000, "budget" : 14249 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf97"), "movie_genre" : "Crime|Drama|Mystery|Thriller", "movie_name" : "Tell No One (Ne le dis à personne)", "production_year" : 2007, "budget" : 12904 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf98"), "movie_genre" : "Adventure|Sci-Fi", "movie_name" : "Slipstream", "production_year" : 2018, "budget" : 19233 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf99"), "movie_genre" : "Adventure|Drama|War", "movie_name" : "Cabiria", "production_year" : 2003, "budget" : 15955 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9a"), "movie_genre" : "Sci-Fi", "movie_name" : "Valley of the Dragons", "production_year" : 1999, "budget" : 15648 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9b"), "movie_genre" : "Action|Drama|Fantasy", "movie_name" : "Dracula Untold", "production_year" : 2015, "budget" : 11753 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9c"), "movie_genre" : "Musical|Romance", "movie_name" : "Small Town Girl", "production_year" : 2002, "budget" : 9075 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9d"), "movie_genre" : "Action|Crime|Drama|Thriller", "movie_name" : "House of the Rising Sun", "production_year" : 1991, "budget" : 15236 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9e"), "movie_genre" : "Comedy|Drama|Romance", "movie_name" : "Under the Bridges (Unter den Brücken)", "production_year" : 1991, "budget" : 9286 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9f"), "movie_genre" : "Drama", "movie_name" : "Power of Kangwon Province, The (Kangwon-do ui him)", "production_year" : 2012, "budget" : 9464 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa0"), "movie_genre" : "Comedy", "movie_name" : "Daddy's Dyin'... Who's Got the Will?", "production_year" : 1999, "budget" : 11730 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa1"), "movie_genre" : "Drama|Romance", "movie_name" : "Dark Side of the Sun, The", "production_year" : 2014, "budget" : 17451 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa2"), "movie_genre" : "Drama", "movie_name" : "Isadora", "production_year" : 2005, "budget" : 18496 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa3"), "movie_genre" : "Comedy|Drama|Romance", "movie_name" : "Separation City", "production_year" : 2006, "budget" : 14666 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa4"), "movie_genre" : "Action|Horror|Thriller", "movie_name" : "Attila", "production_year" : 2011, "budget" : 16112 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa5"), "movie_genre" : "Comedy|Crime", "movie_name" : "Con, The", "production_year" : 2019, "budget" : 15507 }
+Type "it" for more
+> db.user.count()
+500
+> db.user.find({"movie_name":{$et:"avengers"}})
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "unknown operator: $et",
+        "code" : 2,
+        "codeName" : "BadValue"
+}
+> db.user.find({"movie_name":{$et:"Two Weeks Notice"}})
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "unknown operator: $et",
+        "code" : 2,
+        "codeName" : "BadValue"
+}
+> db.user.find({"movie_name":{$e:"Two Weeks Notice"}})
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "unknown operator: $e",
+        "code" : 2,
+        "codeName" : "BadValue"
+}
+> db.user.find({"movie_name":{$ne:"Two Weeks Notice"}})
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf92"), "movie_genre" : "Drama", "movie_name" : "River, The (Joki)", "production_year" : 2004, "budget" : 10086 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf94"), "movie_genre" : "Comedy|Western", "movie_name" : "Catlow", "production_year" : 2014, "budget" : 14646 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf95"), "movie_genre" : "Comedy", "movie_name" : "21 and Over", "production_year" : 2005, "budget" : 14347 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf96"), "movie_genre" : "Adventure", "movie_name" : "Treasure of the Four Crowns", "production_year" : 2000, "budget" : 14249 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf97"), "movie_genre" : "Crime|Drama|Mystery|Thriller", "movie_name" : "Tell No One (Ne le dis à personne)", "production_year" : 2007, "budget" : 12904 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf98"), "movie_genre" : "Adventure|Sci-Fi", "movie_name" : "Slipstream", "production_year" : 2018, "budget" : 19233 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf99"), "movie_genre" : "Adventure|Drama|War", "movie_name" : "Cabiria", "production_year" : 2003, "budget" : 15955 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9a"), "movie_genre" : "Sci-Fi", "movie_name" : "Valley of the Dragons", "production_year" : 1999, "budget" : 15648 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9b"), "movie_genre" : "Action|Drama|Fantasy", "movie_name" : "Dracula Untold", "production_year" : 2015, "budget" : 11753 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9c"), "movie_genre" : "Musical|Romance", "movie_name" : "Small Town Girl", "production_year" : 2002, "budget" : 9075 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9d"), "movie_genre" : "Action|Crime|Drama|Thriller", "movie_name" : "House of the Rising Sun", "production_year" : 1991, "budget" : 15236 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9e"), "movie_genre" : "Comedy|Drama|Romance", "movie_name" : "Under the Bridges (Unter den Brücken)", "production_year" : 1991, "budget" : 9286 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9f"), "movie_genre" : "Drama", "movie_name" : "Power of Kangwon Province, The (Kangwon-do ui him)", "production_year" : 2012, "budget" : 9464 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa0"), "movie_genre" : "Comedy", "movie_name" : "Daddy's Dyin'... Who's Got the Will?", "production_year" : 1999, "budget" : 11730 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa1"), "movie_genre" : "Drama|Romance", "movie_name" : "Dark Side of the Sun, The", "production_year" : 2014, "budget" : 17451 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa2"), "movie_genre" : "Drama", "movie_name" : "Isadora", "production_year" : 2005, "budget" : 18496 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa3"), "movie_genre" : "Comedy|Drama|Romance", "movie_name" : "Separation City", "production_year" : 2006, "budget" : 14666 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa4"), "movie_genre" : "Action|Horror|Thriller", "movie_name" : "Attila", "production_year" : 2011, "budget" : 16112 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa5"), "movie_genre" : "Comedy|Crime", "movie_name" : "Con, The", "production_year" : 2019, "budget" : 15507 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa6"), "movie_genre" : "Drama", "movie_name" : "Saint of Fort Washington, The", "production_year" : 2003, "budget" : 9099 }
+Type "it" for more
+> db.user.find({"movie_name":{$eq:"Two Weeks Notice"}})
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf93"), "movie_genre" : "Comedy|Romance", "movie_name" : "Two Weeks Notice", "production_year" : 2010, "budget" : 16753 }
+> db.user.find({$and:[{"budget":{$gt:10000}},{"budget":{$gte:11000}}]})
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf93"), "movie_genre" : "Comedy|Romance", "movie_name" : "Two Weeks Notice", "production_year" : 2010, "budget" : 16753 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf94"), "movie_genre" : "Comedy|Western", "movie_name" : "Catlow", "production_year" : 2014, "budget" : 14646 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf95"), "movie_genre" : "Comedy", "movie_name" : "21 and Over", "production_year" : 2005, "budget" : 14347 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf96"), "movie_genre" : "Adventure", "movie_name" : "Treasure of the Four Crowns", "production_year" : 2000, "budget" : 14249 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf97"), "movie_genre" : "Crime|Drama|Mystery|Thriller", "movie_name" : "Tell No One (Ne le dis à personne)", "production_year" : 2007, "budget" : 12904 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf98"), "movie_genre" : "Adventure|Sci-Fi", "movie_name" : "Slipstream", "production_year" : 2018, "budget" : 19233 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf99"), "movie_genre" : "Adventure|Drama|War", "movie_name" : "Cabiria", "production_year" : 2003, "budget" : 15955 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9a"), "movie_genre" : "Sci-Fi", "movie_name" : "Valley of the Dragons", "production_year" : 1999, "budget" : 15648 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9b"), "movie_genre" : "Action|Drama|Fantasy", "movie_name" : "Dracula Untold", "production_year" : 2015, "budget" : 11753 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9d"), "movie_genre" : "Action|Crime|Drama|Thriller", "movie_name" : "House of the Rising Sun", "production_year" : 1991, "budget" : 15236 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa0"), "movie_genre" : "Comedy", "movie_name" : "Daddy's Dyin'... Who's Got the Will?", "production_year" : 1999, "budget" : 11730 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa1"), "movie_genre" : "Drama|Romance", "movie_name" : "Dark Side of the Sun, The", "production_year" : 2014, "budget" : 17451 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa2"), "movie_genre" : "Drama", "movie_name" : "Isadora", "production_year" : 2005, "budget" : 18496 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa3"), "movie_genre" : "Comedy|Drama|Romance", "movie_name" : "Separation City", "production_year" : 2006, "budget" : 14666 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa4"), "movie_genre" : "Action|Horror|Thriller", "movie_name" : "Attila", "production_year" : 2011, "budget" : 16112 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa5"), "movie_genre" : "Comedy|Crime", "movie_name" : "Con, The", "production_year" : 2019, "budget" : 15507 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa7"), "movie_genre" : "Action|Drama|Horror", "movie_name" : "Rigor Mortis (Geung si)", "production_year" : 2016, "budget" : 16596 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa8"), "movie_genre" : "Comedy|Fantasy", "movie_name" : "Me Two (Personne aux deux personnes, La)", "production_year" : 2009, "budget" : 18787 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa9"), "movie_genre" : "Action|Adventure|Comedy", "movie_name" : "Chennai Express", "production_year" : 1997, "budget" : 16609 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfaa"), "movie_genre" : "Drama", "movie_name" : "My Life and Times With Antonin Artaud (En compagnie d'Antonin Artaud)", "production_year" : 1994, "budget" : 14142 }
+Type "it" for more
+> db.user.find({$and:[{"production_year":{$gt:2000}},{"budget":{$gt:10000}}]})
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf92"), "movie_genre" : "Drama", "movie_name" : "River, The (Joki)", "production_year" : 2004, "budget" : 10086 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf93"), "movie_genre" : "Comedy|Romance", "movie_name" : "Two Weeks Notice", "production_year" : 2010, "budget" : 16753 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf94"), "movie_genre" : "Comedy|Western", "movie_name" : "Catlow", "production_year" : 2014, "budget" : 14646 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf95"), "movie_genre" : "Comedy", "movie_name" : "21 and Over", "production_year" : 2005, "budget" : 14347 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf97"), "movie_genre" : "Crime|Drama|Mystery|Thriller", "movie_name" : "Tell No One (Ne le dis à personne)", "production_year" : 2007, "budget" : 12904 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf98"), "movie_genre" : "Adventure|Sci-Fi", "movie_name" : "Slipstream", "production_year" : 2018, "budget" : 19233 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf99"), "movie_genre" : "Adventure|Drama|War", "movie_name" : "Cabiria", "production_year" : 2003, "budget" : 15955 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9b"), "movie_genre" : "Action|Drama|Fantasy", "movie_name" : "Dracula Untold", "production_year" : 2015, "budget" : 11753 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa1"), "movie_genre" : "Drama|Romance", "movie_name" : "Dark Side of the Sun, The", "production_year" : 2014, "budget" : 17451 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa2"), "movie_genre" : "Drama", "movie_name" : "Isadora", "production_year" : 2005, "budget" : 18496 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa3"), "movie_genre" : "Comedy|Drama|Romance", "movie_name" : "Separation City", "production_year" : 2006, "budget" : 14666 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa4"), "movie_genre" : "Action|Horror|Thriller", "movie_name" : "Attila", "production_year" : 2011, "budget" : 16112 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa5"), "movie_genre" : "Comedy|Crime", "movie_name" : "Con, The", "production_year" : 2019, "budget" : 15507 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa7"), "movie_genre" : "Action|Drama|Horror", "movie_name" : "Rigor Mortis (Geung si)", "production_year" : 2016, "budget" : 16596 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa8"), "movie_genre" : "Comedy|Fantasy", "movie_name" : "Me Two (Personne aux deux personnes, La)", "production_year" : 2009, "budget" : 18787 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfab"), "movie_genre" : "Comedy", "movie_name" : "La vérité si je mens !", "production_year" : 2016, "budget" : 14675 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfad"), "movie_genre" : "Drama|Romance", "movie_name" : "Saga of Gosta Berling, The (Gösta Berlings saga)", "production_year" : 2005, "budget" : 18628 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfb2"), "movie_genre" : "Drama|Mystery", "movie_name" : "White Ribbon, The (Das weiße Band)", "production_year" : 2004, "budget" : 19083 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfb4"), "movie_genre" : "Drama", "movie_name" : "Diverted", "production_year" : 2008, "budget" : 13627 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfb5"), "movie_genre" : "Crime|Thriller|Western", "movie_name" : "Red Hill", "production_year" : 2003, "budget" : 12144 }
+Type "it" for more
+> db.user.find({$and:[{"budget":{$lte:12000}},{"budget":{$lt:15000}}]})
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf92"), "movie_genre" : "Drama", "movie_name" : "River, The (Joki)", "production_year" : 2004, "budget" : 10086 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9b"), "movie_genre" : "Action|Drama|Fantasy", "movie_name" : "Dracula Untold", "production_year" : 2015, "budget" : 11753 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9c"), "movie_genre" : "Musical|Romance", "movie_name" : "Small Town Girl", "production_year" : 2002, "budget" : 9075 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9e"), "movie_genre" : "Comedy|Drama|Romance", "movie_name" : "Under the Bridges (Unter den Brücken)", "production_year" : 1991, "budget" : 9286 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9f"), "movie_genre" : "Drama", "movie_name" : "Power of Kangwon Province, The (Kangwon-do ui him)", "production_year" : 2012, "budget" : 9464 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa0"), "movie_genre" : "Comedy", "movie_name" : "Daddy's Dyin'... Who's Got the Will?", "production_year" : 1999, "budget" : 11730 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa6"), "movie_genre" : "Drama", "movie_name" : "Saint of Fort Washington, The", "production_year" : 2003, "budget" : 9099 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfae"), "movie_genre" : "Comedy|Musical|Romance", "movie_name" : "Gang's All Here, The", "production_year" : 2009, "budget" : 9505 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfb3"), "movie_genre" : "Children|Comedy|Romance", "movie_name" : "A Cinderella Story: Once Upon a Song", "production_year" : 2000, "budget" : 10138 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfb8"), "movie_genre" : "Horror|Sci-Fi", "movie_name" : "Thing from Another World, The", "production_year" : 2018, "budget" : 11160 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfb9"), "movie_genre" : "Comedy|Romance", "movie_name" : "Overboard", "production_year" : 2019, "budget" : 9460 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfbb"), "movie_genre" : "Documentary", "movie_name" : "Precision: The Measure of All Things", "production_year" : 1998, "budget" : 10386 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfca"), "movie_genre" : "Western", "movie_name" : "Lonely Man, The", "production_year" : 2001, "budget" : 11955 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfcb"), "movie_genre" : "Adventure|Fantasy|Sci-Fi", "movie_name" : "Mothra (Mosura)", "production_year" : 1990, "budget" : 10279 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfce"), "movie_genre" : "Documentary", "movie_name" : "Forever Yours (Ikuisesti sinun)", "production_year" : 2006, "budget" : 10253 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfd6"), "movie_genre" : "Drama", "movie_name" : "Dark Matter", "production_year" : 1992, "budget" : 10954 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfdc"), "movie_genre" : "Action|Drama", "movie_name" : "Devil's Double, The", "production_year" : 2014, "budget" : 11637 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfe1"), "movie_genre" : "Drama|Romance", "movie_name" : "Room in Rome (Habitación en Roma)", "production_year" : 1994, "budget" : 9382 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfe4"), "movie_genre" : "Drama", "movie_name" : "Left Hand of God, The", "production_year" : 2001, "budget" : 9021 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfe5"), "movie_genre" : "Comedy|Fantasy", "movie_name" : "Mr. Destiny", "production_year" : 2015, "budget" : 10253 }
+Type "it" for more
+> db.user.find({$or:[{"production_year":{$gt:2000}},{"budget":{$gt:10000}}]})
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf92"), "movie_genre" : "Drama", "movie_name" : "River, The (Joki)", "production_year" : 2004, "budget" : 10086 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf93"), "movie_genre" : "Comedy|Romance", "movie_name" : "Two Weeks Notice", "production_year" : 2010, "budget" : 16753 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf94"), "movie_genre" : "Comedy|Western", "movie_name" : "Catlow", "production_year" : 2014, "budget" : 14646 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf95"), "movie_genre" : "Comedy", "movie_name" : "21 and Over", "production_year" : 2005, "budget" : 14347 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf96"), "movie_genre" : "Adventure", "movie_name" : "Treasure of the Four Crowns", "production_year" : 2000, "budget" : 14249 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf97"), "movie_genre" : "Crime|Drama|Mystery|Thriller", "movie_name" : "Tell No One (Ne le dis à personne)", "production_year" : 2007, "budget" : 12904 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf98"), "movie_genre" : "Adventure|Sci-Fi", "movie_name" : "Slipstream", "production_year" : 2018, "budget" : 19233 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf99"), "movie_genre" : "Adventure|Drama|War", "movie_name" : "Cabiria", "production_year" : 2003, "budget" : 15955 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9a"), "movie_genre" : "Sci-Fi", "movie_name" : "Valley of the Dragons", "production_year" : 1999, "budget" : 15648 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9b"), "movie_genre" : "Action|Drama|Fantasy", "movie_name" : "Dracula Untold", "production_year" : 2015, "budget" : 11753 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9c"), "movie_genre" : "Musical|Romance", "movie_name" : "Small Town Girl", "production_year" : 2002, "budget" : 9075 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9d"), "movie_genre" : "Action|Crime|Drama|Thriller", "movie_name" : "House of the Rising Sun", "production_year" : 1991, "budget" : 15236 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9f"), "movie_genre" : "Drama", "movie_name" : "Power of Kangwon Province, The (Kangwon-do ui him)", "production_year" : 2012, "budget" : 9464 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa0"), "movie_genre" : "Comedy", "movie_name" : "Daddy's Dyin'... Who's Got the Will?", "production_year" : 1999, "budget" : 11730 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa1"), "movie_genre" : "Drama|Romance", "movie_name" : "Dark Side of the Sun, The", "production_year" : 2014, "budget" : 17451 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa2"), "movie_genre" : "Drama", "movie_name" : "Isadora", "production_year" : 2005, "budget" : 18496 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa3"), "movie_genre" : "Comedy|Drama|Romance", "movie_name" : "Separation City", "production_year" : 2006, "budget" : 14666 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa4"), "movie_genre" : "Action|Horror|Thriller", "movie_name" : "Attila", "production_year" : 2011, "budget" : 16112 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa5"), "movie_genre" : "Comedy|Crime", "movie_name" : "Con, The", "production_year" : 2019, "budget" : 15507 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa6"), "movie_genre" : "Drama", "movie_name" : "Saint of Fort Washington, The", "production_year" : 2003, "budget" : 9099 }
+Type "it" for more
+> db.user.find({$nor:[{"production_year":{$gt:2000}},{"budget":{$gt:10000}}]})
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9e"), "movie_genre" : "Comedy|Drama|Romance", "movie_name" : "Under the Bridges (Unter den Brücken)", "production_year" : 1991, "budget" : 9286 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfe1"), "movie_genre" : "Drama|Romance", "movie_name" : "Room in Rome (Habitación en Roma)", "production_year" : 1994, "budget" : 9382 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409d000"), "movie_genre" : "Adventure", "movie_name" : "Dinosaur Project, The", "production_year" : 2000, "budget" : 9598 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409d014"), "movie_genre" : "Crime|Drama", "movie_name" : "Real Fiction (Shilje sanghwang)", "production_year" : 1999, "budget" : 9792 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409d03c"), "movie_genre" : "Drama|Mystery|Romance|Thriller", "movie_name" : "Vertigo", "production_year" : 1992, "budget" : 9519 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409d05a"), "movie_genre" : "Action|Horror", "movie_name" : "Jaws", "production_year" : 1997, "budget" : 9171 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409d072"), "movie_genre" : "Drama|Romance", "movie_name" : "Visitor, The", "production_year" : 1991, "budget" : 9088 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409d077"), "movie_genre" : "Drama", "movie_name" : "Wuthering Heights", "production_year" : 1996, "budget" : 9038 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409d0d0"), "movie_genre" : "Drama|Thriller", "movie_name" : "Hindenburg, The", "production_year" : 1990, "budget" : 10000 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409d10c"), "movie_genre" : "Drama|Mystery|Thriller", "movie_name" : "39 Steps, The", "production_year" : 1991, "budget" : 9544 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409d11c"), "movie_genre" : "Drama|Western", "movie_name" : "Homesman, The", "production_year" : 1997, "budget" : 9410 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409d122"), "movie_genre" : "Adventure|Children|Drama", "movie_name" : "Homeward Bound: The Incredible Journey", "production_year" : 1999, "budget" : 9603 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409d176"), "movie_genre" : "Action|Comedy", "movie_name" : "Taxi", "production_year" : 1995, "budget" : 9431 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409d181"), "movie_genre" : "Documentary", "movie_name" : "Tibet: Cry of the Snow Lion", "production_year" : 1992, "budget" : 9698 }
+> db.user.find({$and:[{"production_year":{$gte:2000}},{"production_year":{$lte:2010}}]})
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf92"), "movie_genre" : "Drama", "movie_name" : "River, The (Joki)", "production_year" : 2004, "budget" : 10086 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf93"), "movie_genre" : "Comedy|Romance", "movie_name" : "Two Weeks Notice", "production_year" : 2010, "budget" : 16753 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf95"), "movie_genre" : "Comedy", "movie_name" : "21 and Over", "production_year" : 2005, "budget" : 14347 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf96"), "movie_genre" : "Adventure", "movie_name" : "Treasure of the Four Crowns", "production_year" : 2000, "budget" : 14249 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf97"), "movie_genre" : "Crime|Drama|Mystery|Thriller", "movie_name" : "Tell No One (Ne le dis à personne)", "production_year" : 2007, "budget" : 12904 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf99"), "movie_genre" : "Adventure|Drama|War", "movie_name" : "Cabiria", "production_year" : 2003, "budget" : 15955 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cf9c"), "movie_genre" : "Musical|Romance", "movie_name" : "Small Town Girl", "production_year" : 2002, "budget" : 9075 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa2"), "movie_genre" : "Drama", "movie_name" : "Isadora", "production_year" : 2005, "budget" : 18496 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa3"), "movie_genre" : "Comedy|Drama|Romance", "movie_name" : "Separation City", "production_year" : 2006, "budget" : 14666 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa6"), "movie_genre" : "Drama", "movie_name" : "Saint of Fort Washington, The", "production_year" : 2003, "budget" : 9099 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfa8"), "movie_genre" : "Comedy|Fantasy", "movie_name" : "Me Two (Personne aux deux personnes, La)", "production_year" : 2009, "budget" : 18787 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfac"), "movie_genre" : "Animation", "movie_name" : "Nine Lives of Fritz the Cat, The", "production_year" : 2000, "budget" : 19732 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfad"), "movie_genre" : "Drama|Romance", "movie_name" : "Saga of Gosta Berling, The (Gösta Berlings saga)", "production_year" : 2005, "budget" : 18628 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfae"), "movie_genre" : "Comedy|Musical|Romance", "movie_name" : "Gang's All Here, The", "production_year" : 2009, "budget" : 9505 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfb2"), "movie_genre" : "Drama|Mystery", "movie_name" : "White Ribbon, The (Das weiße Band)", "production_year" : 2004, "budget" : 19083 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfb3"), "movie_genre" : "Children|Comedy|Romance", "movie_name" : "A Cinderella Story: Once Upon a Song", "production_year" : 2000, "budget" : 10138 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfb4"), "movie_genre" : "Drama", "movie_name" : "Diverted", "production_year" : 2008, "budget" : 13627 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfb5"), "movie_genre" : "Crime|Thriller|Western", "movie_name" : "Red Hill", "production_year" : 2003, "budget" : 12144 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfb6"), "movie_genre" : "Drama", "movie_name" : "Brothers Karamazov, The", "production_year" : 2000, "budget" : 16351 }
+{ "_id" : ObjectId("6230cf286ed92aa7a409cfb7"), "movie_genre" : "Adventure", "movie_name" : "Long Ships, The", "production_year" : 2001, "budget" : 18474 }
+Type "it" for more
+> db.user.find({}).sort("production_year":-1).pretty()
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:39
+> db.user.find({}).sort({"production_year":-1}).pretty()
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409cfc1"),
+        "movie_genre" : "Action|Adventure|Fantasy|Mystery",
+        "movie_name" : "Shadow, The",
+        "production_year" : 2020,
+        "budget" : 14255
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409cfdd"),
+        "movie_genre" : "Adventure|Comedy|Crime|Fantasy",
+        "movie_name" : "Fantomas",
+        "production_year" : 2020,
+        "budget" : 12795
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409cfeb"),
+        "movie_genre" : "Drama|Mystery|Romance",
+        "movie_name" : "Million Dollar Hotel, The",
+        "production_year" : 2020,
+        "budget" : 18743
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d021"),
+        "movie_genre" : "Comedy|Musical|Romance",
+        "movie_name" : "Pajama Game, The",
+        "production_year" : 2020,
+        "budget" : 9504
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d028"),
+        "movie_genre" : "(no genres listed)",
+        "movie_name" : "The Trans-Atlantic Mystery",
+        "production_year" : 2020,
+        "budget" : 14242
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d02e"),
+        "movie_genre" : "Comedy",
+        "movie_name" : "Face",
+        "production_year" : 2020,
+        "budget" : 16966
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d061"),
+        "movie_genre" : "Comedy",
+        "movie_name" : "Who Do I Gotta Kill?",
+        "production_year" : 2020,
+        "budget" : 11564
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d068"),
+        "movie_genre" : "Horror",
+        "movie_name" : "Search for the Beast",
+        "production_year" : 2020,
+        "budget" : 13651
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d06f"),
+        "movie_genre" : "Action|Comedy",
+        "movie_name" : "Pajeczarki",
+        "production_year" : 2020,
+        "budget" : 11798
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d084"),
+        "movie_genre" : "Action|Sci-Fi",
+        "movie_name" : "2081",
+        "production_year" : 2020,
+        "budget" : 16613
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d0b7"),
+        "movie_genre" : "Action|Comedy|Crime",
+        "movie_name" : "Silver Streak",
+        "production_year" : 2020,
+        "budget" : 10987
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d0c4"),
+        "movie_genre" : "Documentary",
+        "movie_name" : "New Rulers of the World, The",
+        "production_year" : 2020,
+        "budget" : 15979
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d0fb"),
+        "movie_genre" : "Drama|Thriller",
+        "movie_name" : "Out of the Furnace (Dust to Dust) (Low Dweller, The)",
+        "production_year" : 2020,
+        "budget" : 15661
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d13f"),
+        "movie_genre" : "Drama",
+        "movie_name" : "Shit Year",
+        "production_year" : 2020,
+        "budget" : 9846
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d146"),
+        "movie_genre" : "Drama",
+        "movie_name" : "Marjorie Morningstar",
+        "production_year" : 2020,
+        "budget" : 19420
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d14a"),
+        "movie_genre" : "Drama|Romance",
+        "movie_name" : "Third Person",
+        "production_year" : 2020,
+        "budget" : 15193
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d174"),
+        "movie_genre" : "Comedy",
+        "movie_name" : "Babysitting",
+        "production_year" : 2020,
+        "budget" : 13665
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d17b"),
+        "movie_genre" : "Drama|War",
+        "movie_name" : "Innocent Voices (Voces inocentes)",
+        "production_year" : 2020,
+        "budget" : 18577
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409cfa5"),
+        "movie_genre" : "Comedy|Crime",
+        "movie_name" : "Con, The",
+        "production_year" : 2019,
+        "budget" : 15507
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409cfb9"),
+        "movie_genre" : "Comedy|Romance",
+        "movie_name" : "Overboard",
+        "production_year" : 2019,
+        "budget" : 9460
+}
+Type "it" for more
+> db.user.find({}).skip(10).limit(5).pretty()
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409cf9c"),
+        "movie_genre" : "Musical|Romance",
+        "movie_name" : "Small Town Girl",
+        "production_year" : 2002,
+        "budget" : 9075
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409cf9d"),
+        "movie_genre" : "Action|Crime|Drama|Thriller",
+        "movie_name" : "House of the Rising Sun",
+        "production_year" : 1991,
+        "budget" : 15236
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409cf9e"),
+        "movie_genre" : "Comedy|Drama|Romance",
+        "movie_name" : "Under the Bridges (Unter den Brücken)",
+        "production_year" : 1991,
+        "budget" : 9286
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409cf9f"),
+        "movie_genre" : "Drama",
+        "movie_name" : "Power of Kangwon Province, The (Kangwon-do ui him)",
+        "production_year" : 2012,
+        "budget" : 9464
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409cfa0"),
+        "movie_genre" : "Comedy",
+        "movie_name" : "Daddy's Dyin'... Who's Got the Will?",
+        "production_year" : 1999,
+        "budget" : 11730
+}
+> db.user.find({}).sort({"production_year":-1},{"movie_name":1}).pretty()
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409cfc1"),
+        "movie_genre" : "Action|Adventure|Fantasy|Mystery",
+        "movie_name" : "Shadow, The",
+        "production_year" : 2020,
+        "budget" : 14255
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409cfdd"),
+        "movie_genre" : "Adventure|Comedy|Crime|Fantasy",
+        "movie_name" : "Fantomas",
+        "production_year" : 2020,
+        "budget" : 12795
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409cfeb"),
+        "movie_genre" : "Drama|Mystery|Romance",
+        "movie_name" : "Million Dollar Hotel, The",
+        "production_year" : 2020,
+        "budget" : 18743
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d021"),
+        "movie_genre" : "Comedy|Musical|Romance",
+        "movie_name" : "Pajama Game, The",
+        "production_year" : 2020,
+        "budget" : 9504
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d028"),
+        "movie_genre" : "(no genres listed)",
+        "movie_name" : "The Trans-Atlantic Mystery",
+        "production_year" : 2020,
+        "budget" : 14242
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d02e"),
+        "movie_genre" : "Comedy",
+        "movie_name" : "Face",
+        "production_year" : 2020,
+        "budget" : 16966
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d061"),
+        "movie_genre" : "Comedy",
+        "movie_name" : "Who Do I Gotta Kill?",
+        "production_year" : 2020,
+        "budget" : 11564
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d068"),
+        "movie_genre" : "Horror",
+        "movie_name" : "Search for the Beast",
+        "production_year" : 2020,
+        "budget" : 13651
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d06f"),
+        "movie_genre" : "Action|Comedy",
+        "movie_name" : "Pajeczarki",
+        "production_year" : 2020,
+        "budget" : 11798
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d084"),
+        "movie_genre" : "Action|Sci-Fi",
+        "movie_name" : "2081",
+        "production_year" : 2020,
+        "budget" : 16613
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d0b7"),
+        "movie_genre" : "Action|Comedy|Crime",
+        "movie_name" : "Silver Streak",
+        "production_year" : 2020,
+        "budget" : 10987
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d0c4"),
+        "movie_genre" : "Documentary",
+        "movie_name" : "New Rulers of the World, The",
+        "production_year" : 2020,
+        "budget" : 15979
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d0fb"),
+        "movie_genre" : "Drama|Thriller",
+        "movie_name" : "Out of the Furnace (Dust to Dust) (Low Dweller, The)",
+        "production_year" : 2020,
+        "budget" : 15661
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d13f"),
+        "movie_genre" : "Drama",
+        "movie_name" : "Shit Year",
+        "production_year" : 2020,
+        "budget" : 9846
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d146"),
+        "movie_genre" : "Drama",
+        "movie_name" : "Marjorie Morningstar",
+        "production_year" : 2020,
+        "budget" : 19420
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d14a"),
+        "movie_genre" : "Drama|Romance",
+        "movie_name" : "Third Person",
+        "production_year" : 2020,
+        "budget" : 15193
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d174"),
+        "movie_genre" : "Comedy",
+        "movie_name" : "Babysitting",
+        "production_year" : 2020,
+        "budget" : 13665
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409d17b"),
+        "movie_genre" : "Drama|War",
+        "movie_name" : "Innocent Voices (Voces inocentes)",
+        "production_year" : 2020,
+        "budget" : 18577
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409cfa5"),
+        "movie_genre" : "Comedy|Crime",
+        "movie_name" : "Con, The",
+        "production_year" : 2019,
+        "budget" : 15507
+}
+{
+        "_id" : ObjectId("6230cf286ed92aa7a409cfb9"),
+        "movie_genre" : "Comedy|Romance",
+        "movie_name" : "Overboard",
+        "production_year" : 2019,
+        "budget" : 9460
+}
+Type "it" for more
+>
